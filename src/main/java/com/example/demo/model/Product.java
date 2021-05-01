@@ -15,10 +15,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity 
-@Table(name="users")
-public class User {
+@Table(name="products")
+public class Product {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,12 +26,11 @@ public class User {
 	@Size(min=4, max=50)
 	private String nombre;
 	
-	@Size(min=4, max=50)
-	private String password;
-	
-	@Max(150)
+	@Size(min=4, max=200)
+	private String descripcion;
+	@Max(200000)
 	@Min(1)
-	private Integer edad;
+	private Integer precio;
 	
 	
 	@Column(updatable=false)
@@ -40,21 +39,21 @@ public class User {
 	
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
-	
-	public User() {}
-
-	public User(
-			@Size(min = 4, max = 50) String nombre, 
-			@Size(min = 4, max = 50) String password,
-			@Max(150) @Min(1) Integer edad) {
+        
+    public Product() {
+    	super();
+    }
+    
+	public Product(Long id, @Size(min = 4, max = 50) String nombre, @Size(min = 4, max = 200) String descripcion,
+			@Max(200000) @Min(1) Integer precio) {
 		super();
+		this.id = id;
 		this.nombre = nombre;
-		this.password = password;
-		this.edad = edad;
+		this.descripcion = descripcion;
+		this.precio = precio;
 	}
-
-
-
+    
+	
 	public Long getId() {
 		return id;
 	}
@@ -71,32 +70,39 @@ public class User {
 		this.nombre = nombre;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
-	public Integer getEdad() {
-		return edad;
+	public Integer getPrecio() {
+		return precio;
 	}
 
-	public void setEdad(Integer edad) {
-		this.edad = edad;
+	public void setPrecio(Integer precio) {
+		this.precio = precio;
 	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+    
 	
-    // Otros getters y setters fueron removidos para resumir
-	
-   @PrePersist
-   protected void onCreate(){
-       this.createdAt = new Date();
-   }
-   @PreUpdate
-   protected void onUpdate(){
-       this.updatedAt = new Date();
-   }
 	
 
 }
