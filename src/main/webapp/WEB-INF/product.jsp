@@ -11,9 +11,31 @@
 <script src="js/product.js" ></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Usuario</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/product">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/sale">Ventas</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
    <section id="register-form" class="container" >
         <form class="text-center border border-light p-5 col-lg-6" action="/api/product/create" method="POST" >
-                  <p class="h4 mb-4">Registrar</p>
+                  <p class="h4 mb-4">Registrar producto</p>
                   <div class="form-row mb-4">
                     <div class="col">
                       <input type="text" id="name" name="name" class="form-control mb-4" placeholder="Nombre" required>
@@ -35,13 +57,14 @@
 		                <th scope="col">Descripcion</th>
 		                <th scope="col">Precio</th>
 		                <th scope="col">Acciones</th>
+		                <th scope="col"></th>
 		                </tr>
 		            </thead>
 		            <tbody id="clientList">
 
 		            </tbody>
 		            </table>
-		           
+		          
 		    </div>
      </section>
 </body>

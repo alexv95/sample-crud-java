@@ -21,7 +21,7 @@ fetch("http://localhost:8080/api/products").then(
 	      }
 	    )
 	  }
-	)s
+	)
 }
 catch(error){
 	alert("No hay productos");

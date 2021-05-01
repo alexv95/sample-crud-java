@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.model.Product;
-
+import com.example.demo.model.Sale;
 import com.example.demo.services.ProductService;
 
 @RestController
@@ -59,6 +59,8 @@ public class ProductController {
 		productService.deleteById(id);
 		return new RedirectView("http://localhost:8080/product");
 	}
+	
+
 	
 
 }

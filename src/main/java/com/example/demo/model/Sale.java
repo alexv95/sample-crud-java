@@ -7,31 +7,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+
 @Entity 
-@Table(name="products")
-public class Product {
-	
+@Table(name="sales")
+public class Sale {
+
+
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long nSale;
 	
-	@Size(min=4, max=50)
-	private String nombre;
+	private Long userId;
 	
 	@Size(min=4, max=200)
 	private String descripcion;
 	@Max(200000)
 	@Min(1)
-	private Integer precio;
-	
+	private Integer total;
 	
 	@Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -39,34 +40,36 @@ public class Product {
 	
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
-        
-    public Product() {
+    
+    
+    public Sale() {
     }
     
-	public Product(Long id, @Size(min = 4, max = 50) String nombre, @Size(min = 4, max = 200) String descripcion,
-			@Max(200000) @Min(1) Integer precio) {
+	public Sale(Long nSale, @Size(min = 4, max = 50) Long userId, @Size(min = 4, max = 200) String descripcion,
+			@Max(200000) @Min(1) Integer total, Date createdAt, Date updatedAt) {
 		super();
-		this.id = id;
-		this.nombre = nombre;
+		this.nSale = nSale;
+		this.userId = userId;
 		this.descripcion = descripcion;
-		this.precio = precio;
+		this.total = total;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 	}
     
-	
-	public Long getId() {
-		return id;
+	public Long getnSale() {
+		return nSale;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setnSale(Long nSale) {
+		this.nSale = nSale;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getDescripcion() {
@@ -77,12 +80,12 @@ public class Product {
 		this.descripcion = descripcion;
 	}
 
-	public Integer getPrecio() {
-		return precio;
+	public Integer getTotal() {
+		return total;
 	}
 
-	public void setPrecio(Integer precio) {
-		this.precio = precio;
+	public void setTotal(Integer total) {
+		this.total = total;
 	}
 
 	public Date getCreatedAt() {
@@ -100,8 +103,4 @@ public class Product {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-    
-	
-	
-
 }
